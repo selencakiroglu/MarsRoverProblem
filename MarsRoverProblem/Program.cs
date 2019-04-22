@@ -1,21 +1,89 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MarsRoverProblem
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            // The code provided will print ‘Hello World’ to the console.
-            // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
-            Console.WriteLine("Hello World!");
-            Console.ReadKey();
+            int plateauX = 5;
+            int plateauY = 5;
+            int locationX = 1;
+            int locationY = 2;
+            string navigation = "N";
+            int direction = 0;
+            string letters = "LMLMLMLMM";
+            int MathMod(int a, int b)
+            {
+                return (Math.Abs(a * b) + a) % b;
+            }
 
-            // Go to http://aka.ms/dotnet-get-started-console to continue learning how to build a console app! 
+            switch (navigation)
+            {
+                case "N":
+                    direction = 0;
+                    break;
+                case "E":
+                    direction = 1;
+                    break;
+                case "S":
+                    direction = 2;
+                    break;
+                case "W":
+                    direction = 3;
+                    break;
+            }
+
+            char[] lettersArray = letters.ToCharArray();
+
+            for (int i = 0; i < lettersArray.Length; i++)
+            {
+                if (lettersArray[i] == 'L')
+                {
+                    direction = MathMod((direction - 1), 4);
+                }
+                if (lettersArray[i] == 'R')
+                {
+                    direction = MathMod((direction + 1), 4);
+                }
+                if (lettersArray[i] == 'M')
+                {
+                    switch (direction)
+                    {
+                        case 0:
+                            locationY++;
+                            break;
+                        case 1:
+                            locationX++;
+                            break;
+                        case 2:
+                            locationY--;
+                            break;
+                        case 3:
+                            locationX--;
+                            break;
+                    }
+                }
+
+                switch (direction)
+                {
+                    case 0:
+                        navigation = "N";
+                        break;
+                    case 1:
+                        navigation = "E";
+                        break;
+                    case 2:
+                        navigation = "S";
+                        break;
+                    case 3:
+                        navigation = "W";
+                        break;
+                }
+            }
+
+            Console.WriteLine(locationX + " " + locationY + " " + navigation);
+            Console.ReadKey();
         }
     }
 }

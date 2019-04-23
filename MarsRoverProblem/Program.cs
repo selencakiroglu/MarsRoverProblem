@@ -52,15 +52,31 @@ namespace MarsRoverProblem
                     {
                         case 0:
                             locationY++;
+                            if (locationY > 5)
+                            {
+                                throw new Exception("Your position should be on plateou.");
+                            }
                             break;
                         case 1:
                             locationX++;
+                            if (locationX > 5)
+                            {
+                                throw new Exception("Your position should be on plateou.");
+                            }
                             break;
                         case 2:
                             locationY--;
+                            if (locationY < 0)
+                            {
+                                throw new Exception("Your position should be on plateou.");
+                            }
                             break;
                         case 3:
                             locationX--;
+                            if (locationX < 0)
+                            {
+                                throw new Exception("Your position should be on plateou.");
+                            }
                             break;
                     }
                 }
